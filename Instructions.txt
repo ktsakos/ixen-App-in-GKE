@@ -1,0 +1,49 @@
+https://github.com/ktsakos/iXenOnK8sGCPNFS ή τα αρχεία σε κάθε sub-folder στο παρόν folder
+
+
+Θα χρειαστειτε ενα Vm ως NFS Server για ολα τα volumes (τύπου NFS)
+
+
+Αν θέλετε αλλάξτε τα αλλά βολεύει για το κλείσιμο και άνοιγμα του cluster στο GCP χωρις ιδιαιτερη χρεωση και χωρις πολυ configuration καθε φορα.
+
+
+τα manifests ειναι για iXen σε K8s χωρις specific placement(κάθε Pod πάει τυχαία σε κάποιο Node)
+
+
+
+Γενικά κάθε φάκελος έχει τα yaml manifests του αντίστοιχου microservice για deployment στο k8s (statefulsets,deployments,secrets,pvcs,pvs)
+
+
+Αν χρειάζεται proxy υπάρχει αντίστοιχος υποφάκελος με όλα τα manifests.
+
+
+Κάνετε σε όλα apply με προσοχή τις κατάλλλες τιμές στα secrets για configuration.
+
+
+
+Βελτιώσεις:
+
+
+-Υπάρχει bug στο k8s οπου χρειαζεται να σηκώνουμε πρώτα το deployment του orion και οταν ειναι ready να σηκωνουμε το service. Αλλιως δεν μας επιστρεφει τιποτα.
+
+Μαλλον καποιο θεμα δικτυωσης δειτε ισως το κεφαλαιο με τα probes για ενδεχομενη επιλυση
+
+-Τα secrets οριζονται με τιμη σε base64 μπορειτε να το αλλαξετε να παιρνουν τα values κανονικα
+
+-Τα manifests γινονται ενα ενα apply. Δειτε το helm και αν εχετε ορεξη καντε package το project ωστε όλα να τροποποιουνται και να γινονται applied from a single point. Δηλαδη ενα chart για το iXen.
+
+
+Συμβουλή:
+
+
+ Πειραματιστειτε με το configuration και εξοικειωθειτε με όλα τα workflows .Ανοιξτε τον κωδικα της php και δειτε ολα τα rest calls.
+
+
+Τελος, με κάθε ανοιγμα του cluster αλλάζει το vm στο οποιο εγκαθισταται ο apache. Στον κωδικα υπαρχουν 2 requests που μιλανε over Nodeport αυτα ειναι τα redirect.php & Mysubscription.php . Θα τα παρατηρησετε επειδη η ip που χτυπανε εχει τελειως διαφορετικο prefix απο τα services over Cluster IP.
+ Αυτες οι δυο γραμμες πρεπει να αλλαζουν καθε φορα που ξανα σηκωνουμε τον clsuster.
+
+
+Για τις χρεωσεις αρκει να κλεινετε το VM του NFS και να βαζετε ολα τα nodepools στο 0. Δικαιουστε δωρεαν εναν kubernetes cluster το μηνα. Θα σας χρεωνει μονο για τους πορους των nodes οταν αυτοι ειναι ανοιχτοι (τιποτα σπουδαιο)
+
+
+Αποφευγετε να ανοιξετε load balancers γιατι χρεωνει και το egress traffic.
