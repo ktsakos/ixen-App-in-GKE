@@ -116,3 +116,60 @@ If using **Google Cloud Platform (GKE)**:
 - 🔐 **Secrets**:
   - Use **Base64-encoded** values by default.
   - Optionally, **plain text** secrets are supported.
+
+  # 📘 API Overview: JMeter Test Plan (`exps.jmx`)
+
+This document provides a high-level summary of all HTTP API requests defined in the `exps.jmx` file used by Apache JMeter. All endpoints are dynamically parameterized using `${ip}` and `${port}` variables.
+
+---
+
+## 🔄 MAKE API Calls WITH APACHE JMETER IMPORTING THE EXPS.JMX FILE
+## 🔄 API Calls TO STRESS IXEN WITH EXTERNAL TRAFFIC
+
+### 1. **Send Measure to Sensor**
+- **Method:** `POST`
+- **Endpoint:** `/packetR.php`
+
+### 2. **iXen Login via Keyrock** (repeated multiple times)
+- **Method:** `POST`
+- **Endpoint:** `/index.php`
+- **Note:** Appears 6 times in the test plan.
+
+### 3. **Search Sensors**
+- **Method:** `POST`
+- **Endpoint:** `/mongoParserAjax.php`
+
+### 4. **Subscribe to Sensor**
+- **Method:** `POST`
+- **Endpoint:** `/subcreate.php`
+
+### 5. **Deploying New App**
+- **Method:** `POST`
+- **Endpoint:** `/deploy.php`
+
+### 6. **Send App Infos to Context Broker**
+- **Method:** `POST`
+- **Endpoint:** `/AppToCB.php`
+
+### 7. **Search Apps**
+- **Method:** `POST`
+- **Endpoint:** `/Apps_to_retrieve.php`
+
+### 8. **Search Subscriptions to Sensors**
+- **Method:** `GET`
+- **Endpoint:** `/MySensors.php`
+
+### 9. **Customer Subscriptions to Apps**
+- **Method:** `POST`
+- **Endpoint:** `/CustomerSubCB.php`
+
+### 10. **Customer Accesses to Mashup Apps**
+- **Method:** `GET`
+- **Endpoint:** `/redirect.php/kostas`
+
+---
+
+## 📌 Notes
+- All domain and port values are parameterized using `${ip}` and `${port}`.
+- Frequent login attempts to `/index.php` may indicate simulated multi-user or session-based testing.
+
