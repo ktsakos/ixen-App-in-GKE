@@ -42,6 +42,7 @@ iXen adopts a **3-tier architecture**:
 > Euripides G.M. Petrakis, Xenofon Koundourakis,  
 > *"iXen: Secure Service Oriented Architecture and Context Information Management in Cloud"*,  
 > International Journal of Ubiquitous Systems and Pervasive Networks (JUSPN), Vol. 14, No. 2, pp. 1–10, January 2021.
+> [Read the full paper (PDF)](https://www.intelligence.tuc.gr/~petrakis/publications/JUSPN2020.pdf)
 
 ---
 
