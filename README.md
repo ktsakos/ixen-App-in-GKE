@@ -48,7 +48,7 @@ iXen adopts a **3-tier architecture**:
 
 ## **MSc Thesis Context**
 
-In the context of my MSc thesis (**(https://doi.org/10.26233/heallink.tuc.103073)**), iXen was **converted into a microservice-based application**.
+In the context of my MSc thesis (**https://doi.org/10.26233/heallink.tuc.103073**), iXen was **converted into a microservice-based application**.
 
 ---
 
